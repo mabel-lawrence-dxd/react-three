@@ -3,8 +3,15 @@ import ReactDOM from "react-dom";
 import threeEntryPoint from "./threeEntryPoint"
 
 class App extends React.Component {
+  constructor(props){
+    super(props);
+    this.imageIsSelected =  false;
+    this.selectedImage = undefined;
+  }
+
   componentDidMount() {
-    threeEntryPoint(this.threeRootElement);
+    let message = threeEntryPoint(this.threeRootElement);
+    console.log(message)
   }
 
   render() {

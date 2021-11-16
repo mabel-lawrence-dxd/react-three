@@ -6,9 +6,9 @@ import {
   } from "./helperFcns.js";
   import applyForce from "./applyForce.js";
   import config from "./config.js";
-  const { maxForce, maxVel, buffer} = config;
+  const { maxForce, maxVel} = config;
 
-export default function boundaries(tempPos, tempVel,acc) {
+export default function boundaries(tempPos, tempVel,acc, buffer) {
     let desired = null;
     let xBound = window.innerWidth/2+buffer;
     let yBound = window.innerHeight/2+buffer;
