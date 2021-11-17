@@ -1,8 +1,9 @@
 import SceneManager from './SceneManager';
 
-export default container => {
+export default (container) => {
     const canvas = createCanvas(document, container);
     const sceneManager = new SceneManager(canvas);
+    let clickedPic;
 
     bindEventListeners();
     render();
@@ -15,7 +16,7 @@ export default container => {
 
     function bindEventListeners() {
         window.onresize = resizeCanvas;
-        window.onmousedown = mouseClick
+        window.onmousedown = mouseClick;
         resizeCanvas();	
     }
 
@@ -30,7 +31,9 @@ export default container => {
     }
 
     function mouseClick(event) {
-        sceneManager.onMouseClick(event);
+        clickedPic = sceneManager.onMouseClick(event);
+        console.log('three entry point clicked pic: ', clickedPic)
+        return clickedPic;
     }
 
     function render() {
@@ -38,5 +41,5 @@ export default container => {
         sceneManager.animate();
     }
 
-    return 'hello'
+    return 'hello world';
 }

@@ -231,7 +231,8 @@ export default (canvas) => {
       let picPos = picParticles[i].position;
       let picRad = picParticles[i].scale.x/2;
       if(scaledX>picPos.x-picRad && scaledX<picPos.x+picRad &&scaledY>picPos.y-picRad && scaledY<picPos.y+picRad){
-        console.log('CLICKED PICTURE: ', picParticles[i].name);
+        console.log('Scene Manager Clicked Pic: ', picParticles[i].name);
+        return picParticles[i].name;
       }
     }
   }

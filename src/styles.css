@@ -1,0 +1,129 @@
+#three-component{
+    position: absolute;
+}
+
+.App {
+    text-align: center;
+    background-color: rgb(10, 10, 99);
+    padding: 10rem;
+  }
+  
+  .small-spacing{
+    margin: 1rem 0 0 0;
+  }
+  
+  .highlight-right-col{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 5rem;
+  }
+  
+  .employee-highlight, #brand-highlight{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-top: 15%;
+  }
+  
+  .highlight-image{
+    width: 30%;
+  }
+  
+  .highlight-image img{
+    width: 100%;
+  }
+  
+  /* .employee-spotlight{
+    background-image: url('./assets/open_quote_50.png'),url('./assets/close_quote_50.png');
+    background-size: 8%, 8%;
+    background-repeat: no-repeat, no-repeat;
+    background-position: top left, 85%;
+  } */
+  
+  .highlight-info{
+    width: 80%;
+    padding: 0 5% 0 5%;
+    float: right;
+    color: black;
+  }
+  
+  .quote p{
+    font-style: italic;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  
+  .highlight-name h4{
+    font-weight: 200;
+    font-size: 1.75rem;;
+  }
+  
+  .highlight-induction{
+    font-weight: 200;
+  }
+  
+  .brand .quote p{
+    font-style: normal;
+  }
+  
+  /* DIAL STYLING */
+  .dial{
+    text-align: center;
+    justify-content: center;
+  }
+  .activeScale {
+    fill: #FFFFFF;
+    transition: 100ms ease-in-out;
+  }
+  
+  .normalScale {
+    fill: #FFFFFF;
+    transition:450ms ease-in-out;
+  }
+  
+  .dial-arc{
+    transition: 450ms ease-in-out;
+  }
+  
+  .value {
+    font-family: 'Work Sans', sans-serif;
+    fill: #ffffff;
+    font-size: 2.25rem;
+    font-weight: 600;
+    transform: translateX(-30%)
+  }
+  
+  .static-circle{
+    fill:none; 
+    stroke: #ffffff;
+  }
+  
+  .inactive-inner{
+    stroke-width: 12px;
+  }
+  
+  .inactive-outer{
+    stroke-width: 4px;
+  }
+  
+  .inner-circle{
+    stroke-width: 6px;
+  }
+  
+  .outer-static-circle{
+    stroke-width: 1px;
+  }
+  
+  .inactive-circle{
+    stroke-width: 3px;
+  }
+  
+  .close-search{
+    font-weight: 900;
+  }
