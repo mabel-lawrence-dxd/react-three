@@ -33,13 +33,10 @@ export default (container) => {
     function mouseClick(event) {
         clickedPic = sceneManager.onMouseClick(event);
         console.log('three entry point clicked pic: ', clickedPic)
-        return clickedPic;
     }
 
     function render() {
         requestAnimationFrame(render);
         sceneManager.animate();
     }
-
-    return 'hello world';
 }

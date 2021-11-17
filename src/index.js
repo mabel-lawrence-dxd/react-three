@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import styles from './styles.css'
 import threeEntryPoint from "./threeEntryPoint";
 import BrandMoment from "./BrandMoment.js";
+import clickedInfo from "./clickedInfo.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,14 +18,14 @@ class App extends React.Component {
 
   onClick(){
     console.log('react on click')
-    this.setState({...this.state, showBrand: !this.state.showBrand})
+    let message = clickedInfo();
+    console.log('message from clicked info in react onClick: ', message)
+    // this.setState({...this.state, showBrand: !this.state.showBrand})
     // this.forceUpdate();
   }
 
   componentDidMount() {
-    let message = threeEntryPoint(this.threeRootElement);
-    this.setState({...this.state, message: message})
-    console.log('comp did mount message: ',this.state.message)
+    threeEntryPoint(this.threeRootElement);
   }
 
   componentDidUpdate(){

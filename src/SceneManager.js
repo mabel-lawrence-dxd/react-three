@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { clamp, add, scale } from "./helperFcns.js";
 import boundaries from "./boundaries.js";
 import separate from "./separate.js";
+import clickedInfo from "./clickedInfo.js";
 import config from "./config.js";
 import circle from "./circle.png";
 import pic1 from "./assets/1b7eaad74f5a4a9d818f43f9e43df394__72bb3eea-f7d1-402c-8041-605b3a84c15d.png";
@@ -145,7 +146,8 @@ export default (canvas) => {
       let result = boundaries(
         sprite.position,
         { x: velVec[0], y: velVec[1], z: velVec[2] },
-        acc, 50
+        acc,
+        50
       );
       let { tempVel, tempAcc } = result;
       acc = tempAcc;
@@ -171,7 +173,8 @@ export default (canvas) => {
       let result = boundaries(
         sprite.position,
         { x: velVec[0], y: velVec[1], z: velVec[2] },
-        acc, 200
+        acc,
+        200
       );
       let { tempVel, tempAcc } = result;
       acc = tempAcc;
@@ -227,11 +230,18 @@ export default (canvas) => {
     // console.log("CLICKED MOUSE @: ", scaledX, scaledY);
 
     //check to see if clicked a photo
-    for(let i = 0; i < picParticles.length; i++){
+    for (let i = 0; i < picParticles.length; i++) {
       let picPos = picParticles[i].position;
-      let picRad = picParticles[i].scale.x/2;
-      if(scaledX>picPos.x-picRad && scaledX<picPos.x+picRad &&scaledY>picPos.y-picRad && scaledY<picPos.y+picRad){
-        console.log('Scene Manager Clicked Pic: ', picParticles[i].name);
+      let picRad = picParticles[i].scale.x / 2;
+      if (
+        scaledX > picPos.x - picRad &&
+        scaledX < picPos.x + picRad &&
+        scaledY > picPos.y - picRad &&
+        scaledY < picPos.y + picRad
+      ) {
+        let message = picParticles[i].name;
+        console.log("Scene Manager Clicked Pic: ", picParticles[i].name);
+        clickedInfo(message);
         return picParticles[i].name;
       }
     }
