@@ -21,14 +21,14 @@
   }
   
   .employee-highlight, #brand-highlight{
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: row;
     align-items: center;
     width: 70%;
     margin-left: 15%;
     margin-right: 15%;
-    padding-top: 15%;
+    margin-top: 15%;
   }
   
   .highlight-image{

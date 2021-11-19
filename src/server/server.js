@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 
 // Server port
-const HTTP_PORT = 8000;
+const HTTP_PORT = 3001;
 // Start server
 app.listen(HTTP_PORT, () => {
   console.log("Server running on port %PORT%".replace("%PORT%", HTTP_PORT));

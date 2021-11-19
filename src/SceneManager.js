@@ -8,6 +8,12 @@ import circle from "./circle.png";
 import pic1 from "./assets/1b7eaad74f5a4a9d818f43f9e43df394__72bb3eea-f7d1-402c-8041-605b3a84c15d.png";
 import pic2 from "./assets/5a8fe5aaaddc44aea7a768f1e9067a8f__9067cce6-22d4-42e4-ba13-450277223e10.png";
 import pic3 from "./assets/891f66ecd3784ddba1eff7b5a5b47a9c__ad3bf7f2-07b9-4203-9897-a3fc0f56ac33.png";
+import pic4 from './assets/8c72e2fc1bc748e897678d1f312a3a93__fecaa1f6-99bf-4220-9ea7-71c3e3cd0a1a.png';
+import pic5 from './assets/28ef481144794239894a4d2225e7061e__53c623ee-7ade-4dfd-871c-bb03f66beb89.png';
+import pic6 from './assets/44fcb7f093ee4dc09fc596f88ec1b7ca__1cee351c-2c3d-435f-bbad-a7b619101324.png';
+import pic7 from './assets/76a0599c97e04f5782897126ecf2c1e1__e8765e28-5890-4e6f-84cf-b6db0ba56302.png';
+import pic8 from './assets/891f66ecd3784ddba1eff7b5a5b47a9c__ad3bf7f2-07b9-4203-9897-a3fc0f56ac33.png';
+import pic9 from './assets/975c89998d5347b7a6f0997e4162c46f__38d65ba6-b46c-43e5-b556-37666a1f0585.png';
 
 export default (canvas) => {
   const screenDimensions = {
@@ -24,7 +30,7 @@ export default (canvas) => {
     "#050370",
     "#75ABCA",
   ];
-  const images = [pic1, pic2, pic3];
+  const images = [pic1, pic2, pic3, pic4, pic5, pic6, pic7, pic8, pic9];
 
   let particles = [];
   let vel = [];

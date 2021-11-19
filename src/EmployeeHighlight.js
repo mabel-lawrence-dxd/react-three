@@ -4,6 +4,7 @@ export default class EmployeeHighlight extends React.Component {
     super(props);
   }
   render() {
+    console.log('EMPLOYEE HIGHLIGHT PROPS: ', this.props)
     return (
       <div className="employee-highlight">
         <div className="highlight-image">
