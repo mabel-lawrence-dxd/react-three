@@ -17,19 +17,15 @@ class App extends React.Component {
   }
 
   onClick(){
-    console.log('react on click')
     let message = clickedInfo();
+    message = message.split('/').pop().split('__').shift();
     console.log('message from clicked info in react onClick: ', message)
-    // this.setState({...this.state, showBrand: !this.state.showBrand})
+    this.setState({...this.state, selectedImage: message})
     // this.forceUpdate();
   }
 
   componentDidMount() {
     threeEntryPoint(this.threeRootElement);
-  }
-
-  componentDidUpdate(){
-    console.log('comp did update')
   }
 
   render() {

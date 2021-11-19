@@ -3,7 +3,6 @@ import SceneManager from './SceneManager';
 export default (container) => {
     const canvas = createCanvas(document, container);
     const sceneManager = new SceneManager(canvas);
-    let clickedPic;
 
     bindEventListeners();
     render();
@@ -31,8 +30,7 @@ export default (container) => {
     }
 
     function mouseClick(event) {
-        clickedPic = sceneManager.onMouseClick(event);
-        console.log('three entry point clicked pic: ', clickedPic)
+        sceneManager.onMouseClick(event);
     }
 
     function render() {

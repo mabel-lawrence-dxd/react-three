@@ -213,6 +213,7 @@ export default (canvas) => {
   }
 
   function onMouseClick(event) {
+    let clickedPic = "";
     mouse.x = event.clientX;
     mouse.y = event.clientY;
     let scaledX;
@@ -239,12 +240,10 @@ export default (canvas) => {
         scaledY > picPos.y - picRad &&
         scaledY < picPos.y + picRad
       ) {
-        let message = picParticles[i].name;
-        console.log("Scene Manager Clicked Pic: ", picParticles[i].name);
-        clickedInfo(message);
-        return picParticles[i].name;
+        clickedPic = picParticles[i].name;
       }
     }
+    clickedInfo(clickedPic);
   }
 
   return {
