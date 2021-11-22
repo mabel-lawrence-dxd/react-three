@@ -297,7 +297,7 @@ export default (canvas) => {
     } else {
       scaledY = window.innerHeight / 2 - mouse.y;
     }
-    // console.log("CLICKED MOUSE @: ", scaledX, scaledY);
+    console.log("CLICKED MOUSE @: ", scaledX, scaledY);
 
     //check to see if clicked a photo
     for (let i = 0; i < picParticles.length; i++) {

@@ -26,14 +26,22 @@ class App extends React.Component {
     let employeeId = clickedInfo();
     let clickedPos = clickedSearch();
     let isSelected = false;
-    
-    if(clickedPos.x){
-      console.log('clicked pos in react on click: ', clickedPos)
-      this.setState({...this.state, selectedSearch: clickedPos});
-    } else if(this.state.selectedSearch){
-      this.setState({...this.state, selectedSearch: undefined});
+    let xPx, yPx;
+
+    if (clickedPos.x) {
+      console.log("clicked pos in react on click: ", clickedPos);
+      const { x, y } = clickedPos;
+      xPx = window.innerWidth / 2 + x;
+      yPx = window.innerHeight / 2 - y;
+      console.log(
+        `full width x height: ${window.innerWidth} x ${window.innerHeight}`
+      );
+      console.log("actual px: ", xPx, yPx);
+      this.setState({ ...this.state, selectedSearch: { x: xPx, y: yPx } });
+    } else if (this.state.selectedSearch) {
+      this.setState({ ...this.state, selectedSearch: undefined });
     }
-    
+
     employeeId = employeeId.split("/").pop().split("__").shift();
     if (this.state.imageIsSelected) {
       this.setState({
@@ -43,7 +51,10 @@ class App extends React.Component {
       });
     } else {
       if (employeeId.length) {
-        console.log("employeeId from clicked info in react onClick: ", employeeId);
+        console.log(
+          "employeeId from clicked info in react onClick: ",
+          employeeId
+        );
         isSelected = true;
         let res = await fetch(`/api/employees/id/${employeeId}`);
         let employee = await res.json();
@@ -87,7 +98,14 @@ class App extends React.Component {
         ) : (
           <div></div>
         )}
-        {this.state.selectedSearch?<SearchDial left={this.state.selectedSearch.x} top={this.state.selectedSearch.y}/>:<div>HELLO</div>}
+        {this.state.selectedSearch ? (
+          <SearchDial
+            left={this.state.selectedSearch.x}
+            top={this.state.selectedSearch.y}
+          />
+        ) : (
+          <div>HELLO</div>
+        )}
       </div>
     );
   }

@@ -15,8 +15,8 @@ export default class Dial extends React.Component {
         steps={30}
         min={1992}
         max={2022}
-        marginLeft={this.props.left}
-        marginTop={this.props.top}
+        marginLeft={this.props.left-150}
+        marginTop={this.props.top-150}
         className="dial"
       >
         <Arc
