@@ -4,7 +4,9 @@ import styles from "./styles.css";
 import threeEntryPoint from "./threeEntryPoint";
 import BrandMoment from "./BrandMoment.js";
 import clickedInfo from "./clickedInfo.js";
+import clickedSearch from "./clickedSearch.js";
 import EmployeeHighlight from "./EmployeeHighlight";
+import SearchDial from "./SearchDial";
 // import headshot from "./assets/1b7eaad74f5a4a9d818f43f9e43df394__72bb3eea-f7d1-402c-8041-605b3a84c15d.png";
 
 class App extends React.Component {
@@ -13,16 +15,26 @@ class App extends React.Component {
     this.state = {
       imageIsSelected: false,
       selectedEmployee: undefined,
+      searchIsSelected: false,
+      selectedSearch: undefined,
       showBrand: false,
     };
     this.onClick = this.onClick.bind(this);
   }
 
   async onClick() {
-    let message = clickedInfo();
+    let employeeId = clickedInfo();
+    let clickedPos = clickedSearch();
     let isSelected = false;
-    message = message.split("/").pop().split("__").shift();
-    console.log("message from clicked info in react onClick: ", message);
+    
+    if(clickedPos.x){
+      console.log('clicked pos in react on click: ', clickedPos)
+      this.setState({...this.state, selectedSearch: clickedPos});
+    } else if(this.state.selectedSearch){
+      this.setState({...this.state, selectedSearch: undefined});
+    }
+    
+    employeeId = employeeId.split("/").pop().split("__").shift();
     if (this.state.imageIsSelected) {
       this.setState({
         ...this.state,
@@ -30,9 +42,10 @@ class App extends React.Component {
         selectedEmployee: undefined,
       });
     } else {
-      if (message.length) {
+      if (employeeId.length) {
+        console.log("employeeId from clicked info in react onClick: ", employeeId);
         isSelected = true;
-        let res = await fetch(`/api/employees/id/${message}`);
+        let res = await fetch(`/api/employees/id/${employeeId}`);
         let employee = await res.json();
         await console.log(employee);
         await this.setState({
@@ -74,6 +87,7 @@ class App extends React.Component {
         ) : (
           <div></div>
         )}
+        {this.state.selectedSearch?<SearchDial left={this.state.selectedSearch.x} top={this.state.selectedSearch.y}/>:<div>HELLO</div>}
       </div>
     );
   }

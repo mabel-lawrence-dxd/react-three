@@ -30,6 +30,10 @@
     margin-right: 15%;
     margin-top: 15%;
   }
+
+  .dial{
+    position: absolute;
+  }
   
   .highlight-image{
     width: 30%;

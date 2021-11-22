@@ -1,0 +1,78 @@
+{
+  "_from": "rc-knob",
+  "_id": "rc-knob@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-MxCYOxKCPnpsZELeqKAsEPpZ7z8jcG9RLDoPqH4tCjsRoHaAUfIfYV+7SVGiLHdgB1vJc/25y8Z0pvZIkYFnVg==",
+  "_location": "/rc-knob",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "rc-knob",
+    "name": "rc-knob",
+    "escapedName": "rc-knob",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/rc-knob/-/rc-knob-1.0.1.tgz",
+  "_shasum": "7ac1aff3620fbc5f7900fa5212a017662f309ed5",
+  "_spec": "rc-knob",
+  "_where": "/Users/40787/Desktop/Work/Pfizer/dxd_client_pfizer_halloffame/prototyping/react_component_tests",
+  "author": {
+    "name": "Andreas Köberle"
+  },
+  "bugs": {
+    "url": "https://github.com/eskimoblood/rc-knob/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "React component library to render knobs",
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.0.0",
+    "babel-plugin-dynamic-import-node": "^2.2.0",
+    "babel-preset-jest": "^24.0.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.8.0",
+    "enzyme-to-json": "^3.3.5",
+    "jest": "^24.0.0",
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "rollup": "^0.67.4",
+    "rollup-plugin-babel": "^4.1.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-replace": "^2.1.0"
+  },
+  "files": [
+    "lib/index.js"
+  ],
+  "homepage": "https://eskimoblood.github.io/rc-knob/",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "name": "rc-knob",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eskimoblood/rc-knob.git"
+  },
+  "scripts": {
+    "build:dev": "NODE_ENV=development rollup -c",
+    "build:prod": "NODE_ENV=production rollup -c",
+    "prepublishOnly": "npm run release",
+    "release": "npm run build:dev && npm run build:prod",
+    "test": "jest"
+  },
+  "version": "1.0.1"
+}
