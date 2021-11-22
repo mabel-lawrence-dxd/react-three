@@ -5,6 +5,8 @@ import threeEntryPoint from "./threeEntryPoint";
 import BrandMoment from "./BrandMoment.js";
 import clickedInfo from "./clickedInfo.js";
 import EmployeeHighlight from "./EmployeeHighlight";
+import {fetchSingleEmployee} from './redux/singleEmployee'
+import {connect} from 'react-redux'
 // import headshot from "./assets/1b7eaad74f5a4a9d818f43f9e43df394__72bb3eea-f7d1-402c-8041-605b3a84c15d.png";
 
 class App extends React.Component {
@@ -23,23 +25,33 @@ class App extends React.Component {
     let isSelected = false;
     message = message.split("/").pop().split("__").shift();
     console.log("message from clicked info in react onClick: ", message);
+    //no headshot clicked
     if (this.state.imageIsSelected) {
       this.setState({
         ...this.state,
         imageIsSelected: false,
         selectedEmployee: undefined,
       });
-    } else {
+    } 
+    //if headshot was clicked, get the info for the selected employee
+    else {
       if (message.length) {
         isSelected = true;
-        let res = await fetch(`/api/employees/id/${message}`);
-        let employee = await res.json();
-        await console.log(employee);
+        const emp = this.props.fetchSingleEmployee(message);
+        console.log('employee returned to react: ', emp)
         await this.setState({
           ...this.state,
           imageIsSelected: isSelected,
-          selectedEmployee: employee[0],
+          selectedEmployee: emp,
         });
+        // let res = await fetch(`/api/employees/id/${message}`);
+        // let employee = await res.json();
+        // await console.log(employee);
+        // await this.setState({
+        //   ...this.state,
+        //   imageIsSelected: isSelected,
+        //   selectedEmployee: employee[0],
+        // });
       }
     }
   }
@@ -79,4 +91,18 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+const mapState = (state) => {
+  return {
+    singleEmployee: state.singleEmployee,
+  };
+};
+
+const mapDispatch = (dispatch) => {
+  return {
+    fetchSingleEmployee: (id) => dispatch(fetchSingleEmployee(id)),
+  };
+};
+
+export default connect(mapState, mapDispatch)(App);
+
+// ReactDOM.render(<App />, document.getElementById("root"));
