@@ -109,7 +109,6 @@ export default (canvas) => {
       vel.push({ x: velX, y: velY, z: velZ });
       scene.add(sprite);
     }
-    console.log("SHOW SEARCH THREE");
     for (let i = 0; i < numSearch; i++) {
       let size = 50;
       let material = new THREE.SpriteMaterial({ map: map, color: "#ffffff" });
@@ -209,10 +208,10 @@ export default (canvas) => {
     let searchShown = clickedSearch();
     //if there is an active search, hide all inactive searches
     if (searchShown.x) {
-      searchParticles.forEach((sprite, idx)=>{
+      searchParticles.forEach((sprite, idx) => {
         scene.remove(sprite);
-      })
-    }else{
+      });
+    } else {
       searchParticles.forEach((sprite, idx) => {
         scene.add(sprite);
         acc = separate(
@@ -328,10 +327,13 @@ export default (canvas) => {
       }
     }
 
+    //check to see if a search is currently active
+    let searchActive = clickedSearch();
     //check to see if clicked a search icon
     for (let i = 0; i < searchParticles.length; i++) {
       let searchPos = searchParticles[i].position;
-      let searchRad = searchParticles[i].scale.x / 2;
+      // let searchRad = searchParticles[i].scale.x / 2;
+      let searchRad = 150;
       if (
         scaledX > searchPos.x - searchRad &&
         scaledX < searchPos.x + searchRad &&
@@ -341,8 +343,13 @@ export default (canvas) => {
         selectedSearch = searchParticles[i].position;
       }
     }
-    // console.log('CLICKED SEARCH: ', clickedSearch)
-    clickedSearch(selectedSearch);
+    // console.log('SELECTED SEARCH: ', selectedSearch)
+    //if search is active, don't check to see if clicked another hidden search icon
+    if (!searchActive.x || !selectedSearch.x) {
+      clickedSearch(selectedSearch);
+    } else if(searchActive.x !== selectedSearch.x){
+      clickedSearch({})
+    }
     clickedInfo(clickedPic);
   }
 

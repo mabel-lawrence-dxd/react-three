@@ -99,12 +99,14 @@ class App extends React.Component {
           <div></div>
         )}
         {this.state.selectedSearch ? (
-          <SearchDial
-            left={this.state.selectedSearch.x}
-            top={this.state.selectedSearch.y}
-          />
+          <div>
+            <SearchDial
+              left={this.state.selectedSearch.x}
+              top={this.state.selectedSearch.y}
+            />
+          </div>
         ) : (
-          <div>HELLO</div>
+          <div></div>
         )}
       </div>
     );

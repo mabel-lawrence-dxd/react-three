@@ -1,5 +1,6 @@
 #three-component{
     position: absolute;
+    z-index: -1;
 }
 
 .App {
@@ -127,7 +128,12 @@
   .inactive-circle{
     stroke-width: 3px;
   }
-  
-  .close-search{
-    font-weight: 900;
+
+  button{
+    z-index: 1;
+    background-color: white;
+    padding: .5rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
   }
