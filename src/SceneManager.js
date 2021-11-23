@@ -109,7 +109,7 @@ export default (canvas) => {
       vel.push({ x: velX, y: velY, z: velZ });
       scene.add(sprite);
     }
-
+    console.log("SHOW SEARCH THREE");
     for (let i = 0; i < numSearch; i++) {
       let size = 50;
       let material = new THREE.SpriteMaterial({ map: map, color: "#ffffff" });
@@ -206,34 +206,49 @@ export default (canvas) => {
       );
     });
 
-    searchParticles.forEach((sprite, idx) => {
-      acc = separate(sprite.position, searchVel[idx], searchParticles, acc, 40);
+    let searchShown = clickedSearch();
+    //if there is an active search, hide all inactive searches
+    if (searchShown.x) {
+      searchParticles.forEach((sprite, idx)=>{
+        scene.remove(sprite);
+      })
+    }else{
+      searchParticles.forEach((sprite, idx) => {
+        scene.add(sprite);
+        acc = separate(
+          sprite.position,
+          searchVel[idx],
+          searchParticles,
+          acc,
+          60
+        );
 
-      let velVec = [searchVel[idx].x, searchVel[idx].y, searchVel[idx].z];
+        let velVec = [searchVel[idx].x, searchVel[idx].y, searchVel[idx].z];
 
-      let result = boundaries(
-        sprite.position,
-        { x: velVec[0], y: velVec[1], z: velVec[2] },
-        acc,
-        50
-      );
-      let { tempVel, tempAcc } = result;
-      acc = tempAcc;
-      velVec = tempVel;
+        let result = boundaries(
+          sprite.position,
+          { x: velVec[0], y: velVec[1], z: velVec[2] },
+          acc,
+          50
+        );
+        let { tempVel, tempAcc } = result;
+        acc = tempAcc;
+        velVec = tempVel;
 
-      velVec = add(velVec, acc);
-      velVec = clamp(velVec, maxVel);
-      acc = [0, 0, 0];
-      searchVel[idx].x = velVec[0];
-      searchVel[idx].y = velVec[1];
-      searchVel[idx].z = velVec[2];
+        velVec = add(velVec, acc);
+        velVec = clamp(velVec, maxVel);
+        acc = [0, 0, 0];
+        searchVel[idx].x = velVec[0];
+        searchVel[idx].y = velVec[1];
+        searchVel[idx].z = velVec[2];
 
-      sprite.position.set(
-        sprite.position.x + searchVel[idx].x,
-        sprite.position.y + searchVel[idx].y,
-        0
-      );
-    });
+        sprite.position.set(
+          sprite.position.x + searchVel[idx].x,
+          sprite.position.y + searchVel[idx].y,
+          0
+        );
+      });
+    }
 
     picParticles.forEach((sprite, idx) => {
       acc = separate(sprite.position, picVel[idx], picParticles, acc, 100);
@@ -327,7 +342,7 @@ export default (canvas) => {
       }
     }
     // console.log('CLICKED SEARCH: ', clickedSearch)
-    clickedSearch(selectedSearch)
+    clickedSearch(selectedSearch);
     clickedInfo(clickedPic);
   }
 
