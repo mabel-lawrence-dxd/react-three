@@ -297,6 +297,7 @@ export default (canvas) => {
   function onMouseClick(event) {
     let clickedPic = "";
     let selectedSearch = {};
+    let searchRad = 0;
     mouse.x = event.clientX;
     mouse.y = event.clientY;
     let scaledX;
@@ -332,8 +333,11 @@ export default (canvas) => {
     //check to see if clicked a search icon
     for (let i = 0; i < searchParticles.length; i++) {
       let searchPos = searchParticles[i].position;
-      // let searchRad = searchParticles[i].scale.x / 2;
-      let searchRad = 150;
+      if (searchActive.x) {
+        searchRad = 150;
+      } else {
+        searchRad = searchParticles[i].scale.x / 2;
+      }
       if (
         scaledX > searchPos.x - searchRad &&
         scaledX < searchPos.x + searchRad &&
@@ -347,8 +351,8 @@ export default (canvas) => {
     //if search is active, don't check to see if clicked another hidden search icon
     if (!searchActive.x || !selectedSearch.x) {
       clickedSearch(selectedSearch);
-    } else if(searchActive.x !== selectedSearch.x){
-      clickedSearch({})
+    } else if (searchActive.x !== selectedSearch.x) {
+      clickedSearch({});
     }
     clickedInfo(clickedPic);
   }
