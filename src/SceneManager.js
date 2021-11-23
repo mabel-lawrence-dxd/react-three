@@ -32,7 +32,7 @@ export default (canvas) => {
     "#75ABCA",
   ];
   const images = [pic1, pic2, pic3, pic4, pic5, pic6, pic7, pic8, pic9];
-  const numSearch = 10;
+  const numSearch = 5;
 
   let particles = [];
   let vel = [];
@@ -350,8 +350,10 @@ export default (canvas) => {
     // console.log('SELECTED SEARCH: ', selectedSearch)
     //if search is active, don't check to see if clicked another hidden search icon
     if (!searchActive.x || !selectedSearch.x) {
+      console.log('no active search and no click on search')
       clickedSearch(selectedSearch);
     } else if (searchActive.x !== selectedSearch.x) {
+      console.log('active search and clicked on hidden search')
       clickedSearch({});
     }
     clickedInfo(clickedPic);

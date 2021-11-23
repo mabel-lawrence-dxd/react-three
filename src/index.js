@@ -20,23 +20,24 @@ class App extends React.Component {
       showBrand: false,
     };
     this.onClick = this.onClick.bind(this);
+    this.searchYear = this.searchYear.bind(this);
   }
 
   async onClick() {
+    console.log(">>>> On click in react");
     let employeeId = clickedInfo();
     let clickedPos = clickedSearch();
     let isSelected = false;
     let xPx, yPx;
 
+    //check to see if activated a search icon
     if (clickedPos.x) {
       console.log("clicked pos in react on click: ", clickedPos);
       const { x, y } = clickedPos;
       xPx = window.innerWidth / 2 + x;
       yPx = window.innerHeight / 2 - y;
-      console.log(
-        `full width x height: ${window.innerWidth} x ${window.innerHeight}`
-      );
-      console.log("actual px: ", xPx, yPx);
+      console.log("CLICKED SEARCH in react on click");
+      // console.log("actual px: ", xPx, yPx);
       this.setState({ ...this.state, selectedSearch: { x: xPx, y: yPx } });
     } else if (this.state.selectedSearch) {
       this.setState({ ...this.state, selectedSearch: undefined });
@@ -68,12 +69,28 @@ class App extends React.Component {
     }
   }
 
+  async searchYear(year){
+    console.log('>>> In search year with year: ', year);
+    try {
+      let res = await fetch(`/api/years/${year}`);
+      let employees = await res.json();
+      await console.log(employees);
+    } catch (error) {
+      console.log('issue searching by year, ', error)
+    }
+  }
+
   componentDidMount() {
     threeEntryPoint(this.threeRootElement);
   }
 
   render() {
     console.log("state in render: ", this.state);
+    let enterX, enterY;
+    if (this.state.selectedSearch) {
+      enterX = this.state.selectedSearch.x;
+      enterY = this.state.selectedSearch.y;
+    }
     return (
       <div>
         <div
@@ -99,7 +116,12 @@ class App extends React.Component {
           <div></div>
         )}
         {this.state.selectedSearch ? (
-          <div>
+          <div
+            onClick={() => {
+              const year = document.getElementsByClassName('value')[0].innerHTML;
+              this.searchYear(year);
+            }}
+          >
             <SearchDial
               left={this.state.selectedSearch.x}
               top={this.state.selectedSearch.y}
@@ -108,6 +130,17 @@ class App extends React.Component {
         ) : (
           <div></div>
         )}
+        {/* {this.state.selectedSearch ? (
+          <button
+            onClick={() => {
+              this.setState({ ...this.state, selectedSearch: undefined });
+            }}
+          >
+            Enter
+          </button>
+        ) : (
+          <div></div>
+        )} */}
       </div>
     );
   }
