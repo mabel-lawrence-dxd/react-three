@@ -7,6 +7,7 @@ import clickedInfo from "./clickedInfo.js";
 import clickedSearch from "./clickedSearch.js";
 import EmployeeHighlight from "./EmployeeHighlight";
 import SearchDial from "./SearchDial";
+import TempSearchResults from "./TempSearchResults";
 // import headshot from "./assets/1b7eaad74f5a4a9d818f43f9e43df394__72bb3eea-f7d1-402c-8041-605b3a84c15d.png";
 
 class App extends React.Component {
@@ -15,8 +16,8 @@ class App extends React.Component {
     this.state = {
       imageIsSelected: false,
       selectedEmployee: undefined,
-      searchIsSelected: false,
       selectedSearch: undefined,
+      searchResults: [],
       showBrand: false,
     };
     this.onClick = this.onClick.bind(this);
@@ -69,14 +70,20 @@ class App extends React.Component {
     }
   }
 
-  async searchYear(year){
-    console.log('>>> In search year with year: ', year);
+  async searchYear(year) {
+    console.log(">>> In search year with year: ", year);
     try {
       let res = await fetch(`/api/years/${year}`);
       let employees = await res.json();
       await console.log(employees);
+      this.setState({
+        ...this.state,
+        selectedSearch: undefined,
+        searchResults: employees,
+      });
+      clickedSearch({});
     } catch (error) {
-      console.log('issue searching by year, ', error)
+      console.log("issue searching by year, ", error);
     }
   }
 
@@ -118,7 +125,8 @@ class App extends React.Component {
         {this.state.selectedSearch ? (
           <div
             onClick={() => {
-              const year = document.getElementsByClassName('value')[0].innerHTML;
+              const year =
+                document.getElementsByClassName("value")[0].innerHTML;
               this.searchYear(year);
             }}
           >
@@ -130,17 +138,18 @@ class App extends React.Component {
         ) : (
           <div></div>
         )}
-        {/* {this.state.selectedSearch ? (
-          <button
+        {this.state.searchResults.length ? (
+          <div
             onClick={() => {
-              this.setState({ ...this.state, selectedSearch: undefined });
+              console.log("clicked search results");
+              this.setState({ ...this.state, searchResults: [] });
             }}
           >
-            Enter
-          </button>
+            <TempSearchResults results={this.state.searchResults} />
+          </div>
         ) : (
           <div></div>
-        )} */}
+        )}
       </div>
     );
   }

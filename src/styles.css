@@ -130,11 +130,8 @@
   stroke-width: 3px;
 }
 
-button {
-  z-index: 1;
-  background-color: white;
-  padding: 0.5rem;
-  border-radius: 10px;
-  border: none;
-  font-size: 1rem;
+#search-results{
+  margin-top: 0;
+  padding: 3rem;
+  color: white;
 }

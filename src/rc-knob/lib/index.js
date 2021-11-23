@@ -669,9 +669,6 @@ var Scale = function Scale(_ref4) {
 
 var Value = function Value(_ref) {
   let year = _ref.value;
-  if(year===0){
-    year = 1992;
-  }
   var value = year;
   var  size = _ref.size,
     _ref$decimalPlace = _ref.decimalPlace,
