@@ -61,10 +61,13 @@ class App extends React.Component {
         let res = await fetch(`/api/employees/id/${employeeId}`);
         let employee = await res.json();
         await console.log(employee);
+        //TEMP FIX FOR HEADSHOT LINK
+        let empFixedHeadshot = employee[0];
+        empFixedHeadshot.headshot = empFixedHeadshot.headshot.split('/').pop()+'.png'
         await this.setState({
           ...this.state,
           imageIsSelected: isSelected,
-          selectedEmployee: employee[0],
+          selectedEmployee: empFixedHeadshot,
         });
       }
     }
@@ -110,9 +113,7 @@ class App extends React.Component {
         {this.state.imageIsSelected ? (
           <EmployeeHighlight
             name={this.state.selectedEmployee.employeeName}
-            headshot={
-              "https://www.cnet.com/a/img/csgXVU5hZmVK1rmnxiHz_KwE38A=/940x0/2017/03/21/3c0946d8-1dbf-4754-bdcc-14984d9ba7b8/harry-potter-philosophers-stone.jpg"
-            }
+            headshot={`http://localhost:8080/${this.state.selectedEmployee.headshot}`}
             inductionYear={this.state.selectedEmployee.inductionYear}
             secondInductionyear={
               this.state.selectedEmployee.secondInductionyear
