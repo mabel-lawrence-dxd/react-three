@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import styles from "./styles.css";
-import threeEntryPoint from "./threeEntryPoint";
-import BrandMoment from "./BrandMoment.js";
+import threeEntryPoint from "./three/threeEntryPoint";
+import BrandMoment from "./Components/BrandMoment.js";
 import clickedInfo from "./clickedInfo.js";
 import clickedSearch from "./clickedSearch.js";
-import EmployeeHighlight from "./EmployeeHighlight";
-import SearchDial from "./SearchDial";
-import TempSearchResults from "./TempSearchResults";
+import EmployeeHighlight from "./Components/EmployeeHighlight";
+import SearchDial from "./Components/SearchDial";
+import TempSearchResults from "./Components/TempSearchResults";
 // import headshot from "./assets/1b7eaad74f5a4a9d818f43f9e43df394__72bb3eea-f7d1-402c-8041-605b3a84c15d.png";
 
 class App extends React.Component {

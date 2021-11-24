@@ -8,7 +8,7 @@ import {
     distance
   } from "./helperFcns.js";
   import applyForce from "./applyForce.js";
-  import config from "./config.js";
+  import config from "../config.js";
   const { maxForce, maxVel} = config;
 
 export default function separate(pos,vel,particles, acc, separation){

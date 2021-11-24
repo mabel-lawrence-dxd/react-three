@@ -5,7 +5,7 @@ import {
     normalize
   } from "./helperFcns.js";
   import applyForce from "./applyForce.js";
-  import config from "./config.js";
+  import config from "../config.js";
   const { maxForce, maxVel} = config;
 
 export default function boundaries(tempPos, tempVel,acc, buffer) {

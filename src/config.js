@@ -1,6 +1,6 @@
 export default {
     numParticles: 50,
-    maxVel: 1,
-    maxForce: .1,
+    maxVel: .5,
+    maxForce: .5,
     r: 5,
 }
